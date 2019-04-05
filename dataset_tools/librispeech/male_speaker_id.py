@@ -2,7 +2,7 @@ import sys
 
 def read_speaker_id(filename_speaker, sex='M', dataset='train-clean-100'):
     output_id = []
-    with open(filename_speaker, 'rb') as f:
+    with open(filename_speaker, 'r') as f:
         for line in f:
             if line[0] != ';':
                 ID, SEX, SUBSET, _, _ = line.split(' | ')

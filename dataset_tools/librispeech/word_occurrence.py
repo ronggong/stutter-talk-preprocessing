@@ -4,9 +4,10 @@ word information
 """
 import os
 import sys
+import json
 
 def parse_trans(filename):
-    with open(filename, 'rb') as f:
+    with open(filename, 'r') as f:
         for line in f:
             list_words = line.rstrip().split(' ')
     return list_words
@@ -34,4 +35,6 @@ if __name__ == '__main__':
                             if dict_word_occurrence[w]-1 < 10:
                                 dict_word_info[w+'_'+str(dict_word_occurrence[w]-1)] = {'filename': filename.replace('.lab', ''),
                                                                                         'word_idx': i}
-    print(dict_word_info)
+    path_current = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(path_current, 'data', 'word_info.json'), 'w') as outfile:
+        json.dump(dict_word_info, outfile)
